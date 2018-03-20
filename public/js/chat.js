@@ -73,7 +73,6 @@ $('#message-form').on('submit', function(e) {
     var messageTextbox = $('[name=message]')
 
     socket.emit('createMessage', {
-        from: 'User',
         text: messageTextbox.val()
     }, function() {
         messageTextbox.val('');
@@ -88,7 +87,6 @@ locationButton.on('click', function () {
 
     locationButton.attr('disabled', 'disabled').text('Sending location...');
 
-    console.log('getting geolocation');
     navigator.geolocation.getCurrentPosition(function (position) {
         locationButton.removeAttr('disabled').text('Send location');
         socket.emit('createLocationMessage', {
